@@ -1,0 +1,35 @@
+.movie-list-container {
+    width: 100%;
+    overflow-x: scroll;
+}
+
+.horizontal-scroll-wrapper {
+    display: flex;
+    padding: 0 10px;
+}
+  
+.movie-item-block {
+    /* background: green; */
+    flex: 0 0 19.7%;
+    text-align: center;
+    margin: 0 2px;
+    transition: transform 300ms ease 100ms;
+
+}
+
+.movie-item-img {
+    border-style: solid;
+    width: 200px;
+    height: 200px;
+}
+
+.player-wrapper {
+    position: relative;
+    padding-top: 40% 
+}
+
+.react-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+}

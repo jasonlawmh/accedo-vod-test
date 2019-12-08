@@ -1,0 +1,8 @@
+export const GET_MOVIES = 'GET_MOVIES';
+export const MOVIE_LIST_LOADING = 'MOVIE_LIST_LOADING';
+
+
+export const GET_HISTORY = 'GET_HISTORY';
+export const ADD_HISTORY = 'ADD_HISTORY';
+export const UPDATE_HISTORY = 'UPDATE_HISTORY';
+export const DELETE_HISTORY = 'DELETE_HISTORY';
