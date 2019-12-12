@@ -48,7 +48,7 @@ export class Movies extends Component {
         const settings = {
             infinite: this.props.movies.length >= 4,
             arrows: true,
-            focusOnSelect: false,
+            focusOnSelect: true,
             swipeToSlide: true,
             speed: 1000,
             slidesToShow: 4,

@@ -11,7 +11,6 @@ import store from './store';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "react-bootstrap-toggle/dist/bootstrap2-toggle.css";
 import "video-react/dist/video-react.css"; 
-import '@fortawesome/fontawesome-free';
 import './App.css';
 
 class App extends Component{
