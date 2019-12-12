@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
 import movieReducer from './movieReducer';
+import historyReducer from './historyReducer';
 
 export default combineReducers({
-    movie : movieReducer
+    movies : movieReducer,
+    history : historyReducer
 });

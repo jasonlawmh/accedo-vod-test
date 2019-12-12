@@ -1,42 +1,45 @@
-import React, { Component } from 'react'
-//import { Player, BigPlayButton, ControlBar, LoadingSpinner } from 'video-react';
-import ReactPlayer from 'react-player'
-import queryString from 'query-string'
+import React, { Component } from 'react';
+import queryString from 'query-string';
 import MoviePlayer from './MoviePlayer';
 
 import { connect } from 'react-redux';
 import { getMovies } from '../../actions/movieActions';
+import { addHistory } from '../../actions/historyActions';
 
 import PropTypes from 'prop-types';
 
 export class WatchMovie extends Component {
 
     state = {
-		watchComplete: false
+        watchComplete: false,
+        playedSeconds: 0,
+        movie: {}
     };
 
     setWatchComplete = (state) => {
-        this.state.watchComplete = state;
+        this.setState({ watchComplete: state });
     }
 
-    // handleWatchComplete = ({played}) => {
-    //     if( played === 1 && !this.state.watchComplete ){
-    //         this.setWatchComplete(true);
-    //         this.props.history.push("/");
-    //     }
-    // }
+    setCurrentMovie = (state) => {
+        this.setState({ movie: state });
+    }
 
     handleWatchComplete = () => {
         this.setWatchComplete(true);
         this.props.history.push("/");
     }
 
-    startWithFullScreen = () => {
-        console.log("startWithFullScreen");
+    handleWatchOnStart = (movie) => {
+        const viewHistoryObj = { "name" : movie.id};
+        this.props.addHistory(viewHistoryObj);
     }
     
     componentDidMount() {
         this.props.getMovies();
+    }
+
+    componentWillUnmount() {
+        console.log("componentWillUnmount")
     }
 
     render() {
@@ -45,15 +48,15 @@ export class WatchMovie extends Component {
         const id=value.id;
 
         // get the movies prop
-        const { movies } = this.props.movie;
-        //get the movie object
+        const { movies } = this.props.movies;
+
         const movie = movies.find(movie => movie.id === id);
 
         return (
             <MoviePlayer 
                 movie={movie}
-                onStart={this.startWithFullScreen}
-                onEnded={this.handleWatchComplete}
+                onStart={() => {this.handleWatchOnStart(movie)}}
+                onEnded={() => {this.handleWatchComplete()}}
             />
         )
     }
@@ -61,11 +64,12 @@ export class WatchMovie extends Component {
 
 WatchMovie.propTypes = {
     getMovies: PropTypes.func.isRequired,
-    movie: PropTypes.object.isRequired
+    movies: PropTypes.object.isRequired,
+    addHistory: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
-    movie: state.movie
+    movies: state.movies
   });
   
-export default connect(mapStateToProps, { getMovies })(WatchMovie);
+export default connect(mapStateToProps, { getMovies, addHistory })(WatchMovie);

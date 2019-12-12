@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
-import IconPlay from '../Icons/IconPlay';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlay } from '@fortawesome/free-solid-svg-icons'
 
 export class PlayButton extends Component {
     playMoiveHandler = (history, id) => {
@@ -14,11 +14,11 @@ export class PlayButton extends Component {
         return (
             <button className="play-button" onClick={() => {this.playMoiveHandler(history, id)}}>
                 <span>
-                    Play
+                    <FontAwesomeIcon icon={faPlay} />
                 </span>
             </button>
         )
     }
 }
 
-export default PlayButton
+export default PlayButton;

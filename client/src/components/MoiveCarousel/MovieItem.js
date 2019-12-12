@@ -1,29 +1,34 @@
 import React, { Component } from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 import PlayButton from './PlayButton';
+import DetailButton from './DetailButton';
+import ResponsiveImage from '../common/ResponsiveImage';
 
 export class MovieItem extends Component {
+
+    constructor(props) {
+        super(props);
+        this.imgRef = React.createRef();
+    }
 
     render() {
         const history  = this.props.history;
         const { id, title, images } = this.props.movie;
 
         return (
-            <div className="movie-item-block">
-                <div className="movie-item-img">
-                    <LazyLoadImage
-                        alt={title}
-                        effect="blur"
-                        height="100%"
-                        placeholderSrc={images[0].url}
-                        src={images[0].url}
-                        width="100%" />
+            <React.Fragment>
+                <ResponsiveImage
+                    src={images[0].url}
+                    width={images[0].width}
+                    height={images[0].height} 
+                />
+                <div className="movie-button-wrapper">
+                    <PlayButton id={id} history={history} />
+                    <DetailButton movie={this.props.movie} />
                 </div>
                 <div className="movie-item-title">
-                    <PlayButton id={id} history={history} />
-                    {title}
+                    <p>{title}</p>
                 </div>
-            </div>
+            </React.Fragment>
         )
     }
 }
