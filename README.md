@@ -14,6 +14,7 @@ A view history is used to keep track of the user watching progress, which stored
 ### Installing
 ```
 npm install
+npm run client-install
 ```
 ```
 npm run dev
