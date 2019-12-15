@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import './ViewHistory.css';
 import { connect } from 'react-redux';
 import { getHistory } from '../../actions/historyActions';
-import { getMovies } from '../../actions/movieActions';
 import ViewHistoryList  from './ViewHistoryList';
 
 import PropTypes from 'prop-types';
@@ -10,10 +8,13 @@ import PropTypes from 'prop-types';
 class ViewHistory extends Component {
 
     componentDidMount() {
-        this.props.getMovies();
         this.props.getHistory();
     }
 
+    /**
+     * Get the date format in Year-Month-Day e.g.(2019-12-14)
+     * @param {Object} dateObj - Date Object from view history
+     */        
     getDateDisplay = (dateObj) => {
         return `${dateObj.getFullYear().toString()}-${dateObj.getMonth().toString()}-${dateObj.getDate().toString()}`;
     }
@@ -23,6 +24,7 @@ class ViewHistory extends Component {
         
         let historyList = {};
         
+        //Grouping into different day group
         history.forEach(historyItem => {
             const d = new Date(historyItem.date);
             const d_str = this.getDateDisplay(d);
@@ -48,7 +50,6 @@ class ViewHistory extends Component {
 }
 
 ViewHistory.propTypes = {
-    getMovies: PropTypes.func.isRequired,
     getHistory: PropTypes.func.isRequired,
     view_history: PropTypes.object.isRequired,
     movies: PropTypes.object.isRequired
@@ -59,5 +60,5 @@ const mapStateToProps = (state) => ({
     movies: state.movies
 });
   
-export default connect(mapStateToProps, { getMovies, getHistory })(ViewHistory);
+export default connect(mapStateToProps, { getHistory })(ViewHistory);
 

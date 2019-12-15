@@ -1,0 +1,40 @@
+.movie-item-block {
+    display: inline-block;
+    position: relative;
+}
+
+.movie-item-block img {
+    max-width: 100%;
+    border-style: dotted;
+}
+
+.movie-item-block:hover img{
+    opacity:0.5;
+}
+
+.slick-slide, .slick-slide *{ 
+    outline: none !important; 
+}
+
+.movie-list-container > .slick-slider > .slick-list > .slick-track {    
+    margin-left:0;
+}
+
+.movie-item-block:hover button {
+    display: block;
+}
+
+.movie-item-block button {
+    position:absolute;
+    display:none;
+}
+
+.movie-item-block button.play-button {
+    top:40%;
+    left:30%;
+}
+
+.movie-item-block button.detail-button {
+    top:40%;
+    left:50%;
+}

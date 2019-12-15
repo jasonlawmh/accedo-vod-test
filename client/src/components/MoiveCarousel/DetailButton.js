@@ -13,6 +13,9 @@ export class DetailButton extends Component {
         modal : false
     }
 
+    /**
+     * Toggle to show the modal box
+     */
     toggle = () => {
         this.setState({
           modal: !this.state.modal

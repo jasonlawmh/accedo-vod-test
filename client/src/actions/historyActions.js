@@ -24,9 +24,9 @@ export const addHistory = history => dispatch => {
     )
 };
 
-export const updateHistory = history => dispatch => {
+export const updateHistory = (id, history) => dispatch => {
     axios
-      .put('/api/history', history)
+      .put(`/api/history/${id}`, history)
       .then(res =>
         dispatch({
           type: UPDATE_HISTORY,

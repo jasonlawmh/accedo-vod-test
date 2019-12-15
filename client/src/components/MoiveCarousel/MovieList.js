@@ -2,16 +2,15 @@ import React, { Component } from 'react';
 import Movies from './Movies';
 
 import { connect } from 'react-redux';
-import { getMovies } from '../../actions/movieActions';
-
 import PropTypes from 'prop-types';
+import './MoiveCarousel.css';
 
 export class MovieList extends Component {
-  
-    componentDidMount() {
-      this.props.getMovies();
-    }
 
+    /**
+     * Separate the movie into category
+     * @param {Object} movies - The Moive List requested from the api
+     */
     categoryCount = (movies) => {
       return movies.reduce((count, movie) => {
           movie.categories.forEach(category => {
@@ -39,7 +38,6 @@ export class MovieList extends Component {
 }
 
 MovieList.propTypes = {
-  getMovies: PropTypes.func.isRequired,
   movies: PropTypes.object.isRequired
 }
 
@@ -47,4 +45,4 @@ const mapStateToProps = (state) => ({
   movies: state.movies
 });
 
-export default connect(mapStateToProps, { getMovies })(MovieList);
+export default connect(mapStateToProps, { })(MovieList);

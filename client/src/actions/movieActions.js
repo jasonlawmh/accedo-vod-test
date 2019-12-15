@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_MOVIES, MOVIE_LIST_LOADING } from './types';
+import { GET_MOVIES, MOVIE_LIST_LOADING, SET_CURRENT_MOVIE_SLIDE } from './types';
 
 export const getMovies = () => dispatch => {
     dispatch(setMovieListLoading());
@@ -16,5 +16,12 @@ export const getMovies = () => dispatch => {
 export const setMovieListLoading = () => {
     return {
         type: MOVIE_LIST_LOADING
+    }
+}
+
+export const setCurrentMovieSlide = (current_movie_slide) => {
+    return {
+        type: SET_CURRENT_MOVIE_SLIDE,
+        payload: current_movie_slide
     }
 }

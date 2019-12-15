@@ -10,6 +10,10 @@ const HistorySchema = new Schema({
     date: {
         type: Date,
         default: Date.now
+    },
+    playedSeconds: {
+        type: Number,
+        default: 0.0
     }
 });
 

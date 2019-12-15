@@ -1,9 +1,9 @@
-import { GET_MOVIES, MOVIE_LIST_LOADING } from '../actions/types';
+import { GET_MOVIES, MOVIE_LIST_LOADING, SET_CURRENT_MOVIE_SLIDE } from '../actions/types';
 
 const initalState = {
     movies : [],
     loading : false,
-    inital : false
+    currentMovieSlide : {category : "", movie_id : ""}
 
 };
 
@@ -13,13 +13,17 @@ export default function(state = initalState, action ) {
             return {
                 ...state,
                 movies: action.payload,
-                loading: false,
-                inital: true
+                loading: false
             }
         case MOVIE_LIST_LOADING:
             return {
                 ...state,
                 loading : true
+            }
+        case SET_CURRENT_MOVIE_SLIDE:
+            return {
+                ...state,
+                currentMovieSlide: action.payload
             }
         default:
             return state;

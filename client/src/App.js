@@ -1,23 +1,32 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+//Module
 import AppNavbar from './components/layout/AppNavbar';
 import MovieList from './components/MoiveCarousel/MovieList';
-import ViewHistory from './components/pages/ViewHistory';
-import WatchMovie from './components/pages/WatchMovie'
+import ViewHistory from './components/ViewHistory/ViewHistory';
+import WatchMovie from './components/MoviePlayer/WatchMovie'
 
-import { Provider } from 'react-redux';
-import store from './store';
+// Redux
+import { connect } from 'react-redux';
+import { getMovies } from './actions/movieActions';
 
+import PropTypes from 'prop-types';
+
+// Global css
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "react-bootstrap-toggle/dist/bootstrap2-toggle.css";
-import "video-react/dist/video-react.css"; 
 import './App.css';
 
 class App extends Component{
 
+  //Get the Movie List
+  componentDidMount() {
+    this.props.getMovies();
+  }
+
   render() {
     return (
-      <Provider store={store}>
         <Router>
           <div className="App">
 
@@ -28,7 +37,6 @@ class App extends Component{
                 exact
                 path='/'
                 component={MovieList}
-                // render={(props) => <MovieList {...props} movies={this.state.movies} />}
               />
               <Route
                 path='/ViewHistory'
@@ -41,10 +49,13 @@ class App extends Component{
             </div>
           </div>
         </Router>
-      </Provider>
     );
   }
 }
 
-export default App;
+App.propTypes = {
+  getMovies: PropTypes.func.isRequired,
+}
+
+export default connect(null, { getMovies })(App);
 

@@ -3,6 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay } from '@fortawesome/free-solid-svg-icons'
 
 export class PlayButton extends Component {
+
+    /**
+     * Update the img style when being selected
+     * @param {Object} history - React router history
+     * @param {string} id - moive id
+     */
     playMoiveHandler = (history, id) => {
         history.push(`/WatchMovie?id=${id}`);
     }

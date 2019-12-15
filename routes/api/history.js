@@ -24,6 +24,15 @@ router.post('/', (req, res) => {
     newRecord.save().then(record => res.json(record));
 });
 
+// @route  PUT api/history
+// @desc   Update a view record
+// @access Public
+router.put('/:id', (req, res) => {
+    History.findById(req.params.id)
+        .then(record => record.updateOne(req.body).then(() => res.json(req.body)))
+        .catch(err => res.status(404).json({success: false}));
+});
+
 // @route  DELETE api/history
 // @desc   Delete a view record
 // @access Public
