@@ -22,6 +22,7 @@ class App extends Component{
 
   //Get the Movie List
   componentDidMount() {
+    document.title = "accedo-vod-test";
     this.props.getMovies();
   }
 
